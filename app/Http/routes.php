@@ -19,7 +19,7 @@ Route::post('/meeting/new', 'MeetingController@postNewSession');
 
 //Route::get('/moderator/{id}',['as'=>'moderator page', 'uses'=>'MeetingController@getModerator']);
 
-Route::get('/signin/{id}', 'HandController@getSignIn');
+Route::get('/signin/{id}', ['as'=>'signin', 'uses'=>'HandController@getSignIn']);
 
 Route::post('meeting/signup/{id}', 'HandController@postSignIn');
 

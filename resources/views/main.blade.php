@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'My Turn Now: moderator')
+@section('title', 'My Turn Now')
 
 
 
@@ -16,6 +16,10 @@
     <p>
       <a href='{{{route('raisehand',[0])}}}'>NEW TOPIC</a> or <a href='{{{route('raisehand',[1])}}}'>FOLLOW UP OF CURRENT TOPIC</a>
   </div>
+@else
+  <div>
+    <p>This is {{{$meeting->name}}} hosted by you, {{{$meeting->moderator}}}</p>
+    <p>The link for others to join is {{{route('signin',[$meeting->id])}}}</p>
 @endif
     <table class='table table-bordered'>
       <thead>
