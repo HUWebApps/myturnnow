@@ -31,3 +31,11 @@ Route::get('callon/{id}', 'HandController@callon');
 
 Route::get('unraise/{id}', 'HandController@unraise');
 Route::get('transfer/{id}', 'HandController@transfer');
+Route::get('pusher', 'MeetingController@pusher');
+Route::get('pusherclient', ['as'=>'client', 'uses'=>'MeetingController@pusherclient']);
+Route::get('ajaxtest', ['as'=>'ajax', 'uses'=>'MeetingController@ajaxtest']);
+Route::get('javascriptest', 'MeetingController@javascriptest');
+Route::get('ajax', ['as'=>'ajaxactual', 'uses'=>'MeetingController@ajax']);
+Route::get('whole', function(){
+  return view('testwhole');
+});

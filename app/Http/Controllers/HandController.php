@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Meeting;
 use App\Hand;
 
+use Vinkla\Pusher\Facades\Pusher;
+
 class HandController extends Controller
 {
     //
@@ -33,6 +35,7 @@ class HandController extends Controller
 
     public function raisehand($follow){
       //dd('made it');
+
       if (!(session()->has('meeting'))) {
           return "no session started";
         };
@@ -45,6 +48,7 @@ class HandController extends Controller
       $hand->raised=True;
       $hand->followup=$follow;
       $meeting->hands()->save($hand);
+      Pusher::trigger('my-channel', 'my-event', ['message' => 'it has been updated']);
       return redirect()->route('main');
 
     }
@@ -54,6 +58,7 @@ class HandController extends Controller
         $hand=Hand::findOrFail($hand_id);
         $hand->calledon=True;
         $hand->save();
+        Pusher::trigger('my-channel', 'my-event', ['message' => 'it has been updated']);
         return redirect()->route('main');
       };
       return "oops";
@@ -63,6 +68,8 @@ class HandController extends Controller
       $hand=Hand::findOrFail($hand_id);
       $hand->raised=False;
       $hand->save();
+
+      Pusher::trigger('my-channel', 'my-event', ['message' => 'it has been updated']);
       return redirect()->route('main');
     }
 
@@ -71,6 +78,8 @@ class HandController extends Controller
       $follow=!($hand->followup);
       $hand->followup=$follow;
       $hand->save();
+
+      Pusher::trigger('my-channel', 'my-event', ['message' => 'it has been updated']);
       return redirect()->route('main');
     }
 }
