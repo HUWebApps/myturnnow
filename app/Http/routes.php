@@ -23,14 +23,14 @@ Route::get('/signin/{id}', ['as'=>'signin', 'uses'=>'HandController@getSignIn'])
 
 Route::post('meeting/signup/{id}', 'HandController@postSignIn');
 
-Route::get('raisehand/{follow}', ['as'=>'raisehand', 'uses'=>'HandController@raisehand']);
+Route::get('raisehand', ['as'=>'raisehand', 'uses'=>'HandController@raisehand']);
 
 Route::get('meeting', ['as'=>'main', 'uses'=>'MeetingController@main']);
 
-Route::get('callon/{id}', 'HandController@callon');
+Route::get('callon', 'HandController@callon');
 
-Route::get('unraise/{id}', 'HandController@unraise');
-Route::get('transfer/{id}', 'HandController@transfer');
+Route::get('unraise', 'HandController@unraise');
+Route::get('transfer', 'HandController@transfer');
 Route::get('pusher', 'MeetingController@pusher');
 Route::get('pusherclient', ['as'=>'client', 'uses'=>'MeetingController@pusherclient']);
 Route::get('ajaxtest', ['as'=>'ajax', 'uses'=>'MeetingController@ajaxtest']);

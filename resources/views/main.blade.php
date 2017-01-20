@@ -22,6 +22,54 @@ channel.bind('my-event', function(data) {
             }
         });
 });
+$( document ).on('click','.callon', function() {
+  $.ajax({
+            url: '{{action('HandController@callon')}}',
+            type: 'GET',
+            data: {hand_id: $(this).val()}, // An object with the key 'submit' and value 'true;
+            success: function (result) {
+              //alert("Your bookmark has been saved"+result);
+              $("#mainstuff").html(result['html']);
+            }
+        });
+});
+
+$( document ).on('click','.transfer', function() {
+  $.ajax({
+            url: '{{action('HandController@transfer')}}',
+            type: 'GET',
+            data: {hand_id: $(this).val()}, // An object with the key 'submit' and value 'true;
+            success: function (result) {
+              //alert("Your bookmark has been saved"+result);
+              $("#mainstuff").html(result['html']);
+            }
+        });
+});
+
+$( document ).on('click','.unraise', function() {
+  $.ajax({
+            url: '{{action('HandController@unraise')}}',
+            type: 'GET',
+            data: {hand_id: $(this).val()}, // An object with the key 'submit' and value 'true;
+            success: function (result) {
+              //alert("Your bookmark has been saved"+result);
+              $("#mainstuff").html(result['html']);
+            }
+        });
+});
+
+$( document ).on('click','.raise', function() {
+  $.ajax({
+            url: '{{action('HandController@raisehand')}}',
+            type: 'GET',
+            data: {follow: $(this).val(), meeting_id: {{{$meeting->id}}}, name: '{{{$name}}}'}, // An object with the key 'submit' and value 'true;
+            success: function (result) {
+              //alert("Your bookmark has been saved"+result);
+              $("#mainstuff").html(result['html']);
+            }
+        });
+});
+
 });
 </script>
 
@@ -37,7 +85,7 @@ channel.bind('my-event', function(data) {
   <div>
     <p>Welcome {{{$name}}}. You're in {{{$meeting->name}}} hosted by {{{$meeting->moderator}}}</p>
     <p>
-      <a href='{{{route('raisehand',[0])}}}'>NEW TOPIC</a> or <a href='{{{route('raisehand',[1])}}}'>FOLLOW UP OF CURRENT TOPIC</a>
+      <button class='raise' value='0'>New Topic</button><button class='raise' value='1'>Follow up</button>
   </div>
 @else
   <div>

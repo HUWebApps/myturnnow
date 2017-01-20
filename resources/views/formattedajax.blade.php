@@ -10,12 +10,15 @@
           <td>
             @foreach($handsnew AS $hand)
               @if($moderator)
-                <a href="{{{action('HandController@callon',[$hand->id])}}}">{{{$hand->name}}} ({{{$hand->created_at->diffForHumans()}}})</a><br/>
+
+                <button class="callon" value="{{{$hand->id}}}">{{{$hand->name}}}</button>
+                {{{$hand->created_at->diffForHumans()}}}
+                <br>
               @else
                 {{{$hand->name}}} ({{{$hand->created_at->diffForHumans()}}})
                 @if($name==$hand->name)
-                  <a href="{{{action('HandController@unraise', [$hand->id])}}}">Unraise</a>
-                  <a href="{{{action('HandController@transfer', [$hand->id])}}}">transfer</a>
+                  <button class="unraise" value="{{{$hand->id}}}">Unraise</button>
+                  <button class="transfer" value="{{{$hand->id}}}">Transfer</button>
                 @endif
                 <br>
               @endif
@@ -24,12 +27,14 @@
         <td>
           @foreach($handsfollow AS $hand)
             @if($moderator)
-              <a href="{{{action('HandController@callon',[$hand->id])}}}">{{{$hand->name}}} ({{{$hand->created_at->diffForHumans()}}})</a><br/>
+              <button class="callon" value="{{{$hand->id}}}">{{{$hand->name}}}</button>
+              {{{$hand->created_at->diffForHumans()}}}
+              <br>
             @else
               {{{$hand->name}}} ({{{$hand->created_at->diffForHumans()}}})
               @if($name==$hand->name)
-                <a href="{{{action('HandController@unraise', [$hand->id])}}}">Unraise</a>
-                <a href="{{{action('HandController@transfer', [$hand->id])}}}">transfer</a>
+                <button class="unraise" value="{{{$hand->id}}}">Unraise</button>
+                <button class="transfer" value="{{{$hand->id}}}">Transfer</button>
               @endif
               <br>
             @endif
