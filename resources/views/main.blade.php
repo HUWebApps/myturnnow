@@ -81,6 +81,7 @@ $( document ).on('click','.raise', function() {
   line-height: 35px;
   text-align: center;
   margin: .5em 0 .5em 0;
+  width: 100%;
 
 }
 
