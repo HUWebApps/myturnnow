@@ -74,8 +74,6 @@ $( document ).on('click','.raise', function() {
 </script>
 <style>
 .raise{
-  background: #333;
-  color: #fdfdfd;
   min-height: 35px;
   margin: 0;
   border-radius: 3px;
