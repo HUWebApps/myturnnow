@@ -21,8 +21,28 @@
             ['{{$hand->name}}', new Date('{{$hand->created_at->toW3cString()}}'), new Date('{{$hand->updated_at->toW3cString()}}')],
           @endforeach
         ]);
+        var options = {
+            colors: [
+              @foreach($hands as $hand)
+                @if($hand->raised)
+                  @if($hand->followup)
+                    '0000ff',
+                  @else
+                    '0000cc',
+                  @endif
+                @else
+                  @if($hand->followup)
+                    '00ff00',
+                  @else
+                    '00cc00',
+                  @endif
+                @endif
+              @endforeach
 
-        chart.draw(dataTable);
+            ],
+          };
+
+        chart.draw(dataTable, options);
       }
     </script>
   @endsection
