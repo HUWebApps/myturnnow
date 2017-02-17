@@ -74,8 +74,16 @@ $( document ).on('click','.raise', function() {
 </script>
 <style>
 .raise{
+  background-color: #4CAF50;
   width: 40%;
   height: 10%;
+  border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 24px;
 
 }
 
