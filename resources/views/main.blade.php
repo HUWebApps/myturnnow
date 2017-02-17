@@ -93,7 +93,7 @@ a.raise{
   background: #000;
 }
 
-@media only screen and (max-width:480px) {
+@media only screen and (max-width:880px) {
   .raise {
     width: 100%;
   }
@@ -116,7 +116,8 @@ a.raise{
   <div>
     <p>Welcome {{{$name}}}. You're in {{{$meeting->name}}} hosted by {{{$meeting->moderator}}}</p>
     <p>
-      <button class='raise' value='0'>New Topic</button><button class='raise' value='1'>Follow up</button>
+      <button class='raise' value='0'>New Topic</button><br/>
+      <button class='raise' value='1'>Follow up</button>
   </div>
 @else
   <div>
