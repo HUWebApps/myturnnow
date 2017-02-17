@@ -74,7 +74,8 @@ $( document ).on('click','.raise', function() {
 </script>
 <style>
 .raise{
-  width: 100%;
+  width: 40%;
+  height: 10%;
 
 }
 
@@ -92,7 +93,7 @@ $( document ).on('click','.raise', function() {
   <div>
     <p>Welcome {{{$name}}}. You're in {{{$meeting->name}}} hosted by {{{$meeting->moderator}}}</p>
     <p>
-      <button class='raise' value='0'>New Topic</button><br/>
+      <button class='raise' value='0'>New Topic</button>
       <button class='raise' value='1'>Follow up</button>
   </div>
 @else
