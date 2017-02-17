@@ -102,7 +102,7 @@ $( document ).on('click','.raise', function() {
     <p>Welcome {{{$name}}}. You're in {{{$meeting->name}}} hosted by {{{$meeting->moderator}}}</p>
     <p>
       <button class='raise' value='0'>New Topic</button>
-      <button class='raise' value='1' style='background-color:ffff00'>Follow up</button>
+      <button class='raise' value='1' style='background-color:4c50af'>Follow up</button>
   </div>
 @else
   <div>
