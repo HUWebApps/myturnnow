@@ -85,7 +85,9 @@ $( document ).on('click','.raise', function() {
   <div>
     <p>Welcome {{{$name}}}. You're in {{{$meeting->name}}} hosted by {{{$meeting->moderator}}}</p>
     <p>
-      <button class='raise' value='0'>New Topic</button><button class='raise' value='1'>Follow up</button>
+      <div class="btn-group btn-group-lg" role="group" aria-label="...">
+        <button class='raise' value='0'>New Topic</button><button class='raise' value='1'>Follow up</button>
+      </div>
   </div>
 @else
   <div>
