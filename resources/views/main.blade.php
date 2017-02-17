@@ -74,36 +74,11 @@ $( document ).on('click','.raise', function() {
 </script>
 <style>
 .raise{
-  min-height: 35px;
-  margin: 0;
-  border-radius: 3px;
-  border: 0;
-  line-height: 35px;
-  text-align: center;
-  margin: .5em 0 .5em 0;
   width: 100%;
 
 }
 
-a.raise{
-  display: inline;
-  padding: 7px 10px 7px 10px;
-}
 
-.raise:hover{
-  background: #000;
-}
-
-@media only screen and (max-width:880px) {
-  .raise {
-    width: 100%;
-  }
-
-  a.raise{
-    display: block;
-    padding: 0;
-  }
-}
 </style>
 @endsection
 
