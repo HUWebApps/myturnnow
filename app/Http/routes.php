@@ -39,3 +39,4 @@ Route::get('ajax', ['as'=>'ajaxactual', 'uses'=>'MeetingController@ajax']);
 Route::get('whole', function(){
   return view('testwhole');
 });
+Route::get('/chart/{id}', 'MeetingController@chart');

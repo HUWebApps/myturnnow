@@ -142,4 +142,12 @@ class MeetingController extends Controller
     //return $returnhtml;
 
     }
+
+    public function chart($meeting_id){
+      $meeting=Meeting::findOrFail($meeting_id);
+      $hands=$meeting->hands;
+      return view('chart',
+        ['meeting'=>$meeting,
+        'hands'=>$hands]);
+    }
 }
