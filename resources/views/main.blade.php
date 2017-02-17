@@ -72,7 +72,40 @@ $( document ).on('click','.raise', function() {
 
 });
 </script>
+<style>
+.raise{
+  background: #333;
+  color: #fdfdfd;
+  min-height: 35px;
+  margin: 0;
+  border-radius: 3px;
+  border: 0;
+  line-height: 35px;
+  text-align: center;
+  margin: .5em 0 .5em 0;
 
+}
+
+a.raise{
+  display: inline;
+  padding: 7px 10px 7px 10px;
+}
+
+.raise:hover{
+  background: #000;
+}
+
+@media only screen and (max-width:480px) {
+  .raise {
+    width: 100%;
+  }
+
+  a.raise{
+    display: block;
+    padding: 0;
+  }
+}
+</style>
 @endsection
 
 @section('content')
@@ -85,9 +118,7 @@ $( document ).on('click','.raise', function() {
   <div>
     <p>Welcome {{{$name}}}. You're in {{{$meeting->name}}} hosted by {{{$meeting->moderator}}}</p>
     <p>
-      <div class="btn-group btn-group-lg" role="group" aria-label="...">
-        <button class='raise' value='0'>New Topic</button><button class='raise' value='1'>Follow up</button>
-      </div>
+      <button class='raise' value='0'>New Topic</button><button class='raise' value='1'>Follow up</button>
   </div>
 @else
   <div>
