@@ -28,13 +28,7 @@
                   @if($hand->followup)
                     '0000ff',
                   @else
-                    '0000cc',
-                  @endif
-                @else
-                  @if($hand->followup)
                     '00ff00',
-                  @else
-                    '00cc00',
                   @endif
                 @endif
               @endforeach
