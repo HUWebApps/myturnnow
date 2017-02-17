@@ -30,6 +30,12 @@
                   @else
                     '00ff00',
                   @endif
+                @else
+                  @if($hand->followup)
+                    '0000cc',
+                  @else
+                    '00cc00',
+                  @endif
                 @endif
               @endforeach
 
