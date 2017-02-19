@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'My Turn Now')
+@section('title', 'My Turn Now 2')
 
 @section('headstuff')
 
