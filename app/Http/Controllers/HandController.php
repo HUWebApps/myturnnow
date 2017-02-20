@@ -45,9 +45,20 @@ class HandController extends Controller
       $follow=$request->input('follow');
       $hand->followup=$follow;
       $meeting->hands()->save($hand);
-      Pusher::trigger('my-channel', 'my-event', ['message' => 'it has been updated']);
+      $this->pushnow($meeting);
       //return redirect()->route('main');
 
+    }
+
+    public function pushnow($meeting){
+      $hands=$meeting->hands()->where('raised',1)->where('calledon',0)->get(['id','name','followup','created_at']);
+      $hs=array();
+      foreach ($hands as $hand) {
+        $hs[]=["id"=>$hand->id, "name"=>$hand->name, "followup"=>$hand->followup, "when"=>$hand->created_at->diffForHumans()];
+      };
+      $json=collect($hs);
+      //Pusher::trigger('my-channel', 'my-event', ['hands' => $hands->toJson()]);
+      Pusher::trigger('my-channel', 'my-event', ['hands' => $json->toJson()]);
     }
 
     public function callon(Request $request){
@@ -56,7 +67,11 @@ class HandController extends Controller
       $hand=Hand::findOrFail($hand_id);
       $hand->calledon=True;
       $hand->save();
-      Pusher::trigger('my-channel', 'my-event', ['message' => 'it has been updated']);
+      $meeting=$hand->meeting;
+      //Pusher::trigger('my-channel', 'my-event', ['message' => 'it has been updated']);
+      //$hands=$meeting->hands()->where('raised',1)->where('calledon',0)->get(['id','name','followup','created_at']);
+      //Pusher::trigger('my-channel', 'my-event', ['hands' => $hands->toJson()]);
+      $this->pushnow($meeting);
       //return redirect()->route('main');
 
       //return "oops";
@@ -67,8 +82,10 @@ class HandController extends Controller
       $hand=Hand::findOrFail($hand_id);
       $hand->raised=False;
       $hand->save();
+      $meeting=$hand->meeting;
 
-      Pusher::trigger('my-channel', 'my-event', ['message' => 'it has been updated']);
+      //Pusher::trigger('my-channel', 'my-event', ['message' => 'it has been updated']);
+      $this->pushnow($meeting);
       //return redirect()->route('main');
     }
 
@@ -78,8 +95,10 @@ class HandController extends Controller
       $follow=!($hand->followup);
       $hand->followup=$follow;
       $hand->save();
+      $meeting=$hand->meeting;
 
-      Pusher::trigger('my-channel', 'my-event', ['message' => 'it has been updated']);
+      //Pusher::trigger('my-channel', 'my-event', ['message' => 'it has been updated']);
+      $this->pushnow($meeting);
       //return redirect()->route('main');
     }
 }
