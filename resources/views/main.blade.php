@@ -143,10 +143,10 @@ $( document ).on('click','.raise', function() {
 @if(!$moderator)
   <div>
     <p>Welcome {{{$name}}}. You're in {{{$meeting->name}}} hosted by {{{$meeting->moderator}}}</p>
-    <div class="col-md-6">
+    <div class="col-xs-6">
           <button class='raise' value='0'>New Topic</button>
       </div>
-      <div class="col-md-6">
+      <div class="col-xs-6">
           <button class='raise' value='1' style='background-color:4c50af'>Follow up</button>
         </div>
   </div>
@@ -157,9 +157,9 @@ $( document ).on('click','.raise', function() {
 @endif
     <div id='mainstuff'>
 
-            <div id='jsonnewtopics' class="col-md-6">json here</div>
+            <div id='jsonnewtopics' class="col-xs-6">json here</div>
 
-            <div id='jsonfollow' class="col-md-6">2nd json here</div>
+            <div id='jsonfollow' class="col-xs-6">2nd json here</div>
 
 
 
