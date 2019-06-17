@@ -5,7 +5,7 @@
 
 
 @section('content')
-    <form action="{{{url('meeting/new')}}}" method="post">
+    <form action="{{{url('meeting/new')}}}" method="put">
       {{ csrf_field() }}
       Meeting name: <input type='text' name='meeting'><br/>
       your name: <input type='text' name='moderator'><br/>
