@@ -61,8 +61,8 @@
           <tr>
             <td>{{$name}}
             <td>{{$detail["count"]}}</td>
-            <td>{{$detail["lowered"]}} ({{array_sum($detail["loweredtime"]) / count($detail["loweredtime"])}})</td>
-            <td>{{$detail["calledon"]}} ({{array_sum($detail["calledontime"]) / count($detail["calledontime"])}})</td>
+            <td>{{$detail["lowered"]}} ({{$detail["avglowered"]}} minutes)</td>
+            <td>{{$detail["calledon"]}} ({{$detail["avgcalledon"]}} minutes)</td>
           </tr>
         @endforeach
       </table>

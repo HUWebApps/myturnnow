@@ -168,6 +168,8 @@ class MeetingController extends Controller
         if (!(array_key_exists("calledontime",$detail))) {
           $details[$name]["calledontime"]=[0];
         }
+        $details[$name]["avglowered"]=number_format(array_sum($details[$name]["loweredtime"]) / count($details[$name]["loweredtime"]),2);
+        $details[$name]["avgcalledon"]=number_format(array_sum($details[$name]["calledontime"]) / count($details[$name]["calledontime"]),2);
       }
       ksort($details);
       return view('chart',
