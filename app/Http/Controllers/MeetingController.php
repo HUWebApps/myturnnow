@@ -154,11 +154,11 @@ class MeetingController extends Controller
         $details[$hand->name]["count"]++;
         if (!($hand->raised)) {
           $details[$hand->name]["lowered"]++;
-          $details[$hand->name]["loweredtime"][]=$hand->created_at->diff($hand->updated_at)->m;
+          $details[$hand->name]["loweredtime"][]=$hand->created_at->diff($hand->updated_at)->i;
         };
         if ($hand->calledon) {
           $details[$hand->name]["calledon"]++;
-          $details[$hand->name]["calledontime"][]=$hand->created_at->diff($hand->updated_at)->m;
+          $details[$hand->name]["calledontime"][]=$hand->created_at->diff($hand->updated_at)->i;
         }
       }
       foreach ($details as $name => $detail) {
