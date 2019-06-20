@@ -13,36 +13,35 @@
         var chart = new google.visualization.Timeline(container);
         var dataTable = new google.visualization.DataTable();
 
-        dataTable.addColumn({ type: 'string', id: 'President' });
+        dataTable.addColumn({ type: 'string', id: 'Name' });
+        dataTable.addColumn({type: 'string', id: 'number'});
+        dataTable.addColumn({ type: 'string', id: 'style', role: 'style' });
         dataTable.addColumn({ type: 'date', id: 'Start' });
         dataTable.addColumn({ type: 'date', id: 'End' });
         dataTable.addRows([
           @foreach($hands as $hand)
-            ['{{$hand->name}}', new Date('{{$hand->created_at->toW3cString()}}'), new Date('{{$hand->updated_at->toW3cString()}}')],
+            ['{{$hand->name}}', '{{$hand->id}}',
+            @if($hand->raised)
+              @if($hand->followup)
+                '#0000ff',
+              @else
+                '#00ff00',
+              @endif
+            @else
+              @if($hand->followup)
+                '#0000cc',
+              @else
+                '#00cc00',
+              @endif
+            @endif
+            new Date('{{$hand->created_at->toW3cString()}}'), new Date('{{$hand->updated_at->toW3cString()}}')],
           @endforeach
         ]);
+
         var options = {
-            colors: [
-              @foreach($hands as $hand)
-                @if($hand->raised)
-                  @if($hand->followup)
-                    '0000ff',
-                  @else
-                    '00ff00',
-                  @endif
-                @else
-                  @if($hand->followup)
-                    '0000cc',
-                  @else
-                    '00cc00',
-                  @endif
-                @endif
-              @endforeach
-
-            ],
-          };
-
-        chart.draw(dataTable, options);
+                timeline: { showBarLabels: false }
+              };
+        chart.draw(dataTable,options);
       }
     </script>
   @endsection
