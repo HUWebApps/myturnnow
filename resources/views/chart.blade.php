@@ -29,9 +29,9 @@
               @endif
             @else
               @if($hand->followup)
-                '#0000cc',
+                '#b0b0ff',
               @else
-                '#00cc00',
+                '#b0ffb0',
               @endif
             @endif
             new Date('{{$hand->created_at->toW3cString()}}'), new Date('{{$hand->updated_at->toW3cString()}}')],
@@ -67,6 +67,12 @@
         @endforeach
       </table>
     </div>
+    <div>
+      <p>In the chart below, green indicates the hand was raised for a new topic while blue indicates is was a follow-up question.
+        If the color is lighter they lowered their own hand. If it's dark they were called on. If it is of zero duration, that means they neither lowered nor
+          were called on. Note that every bar can be hovered over to see details.</p>
+        </div>
+        </noscript>
     <div>
       held on {{$meeting->created_at->toRfc850String()}}, hosted by {{$meeting->moderator}}.
 
