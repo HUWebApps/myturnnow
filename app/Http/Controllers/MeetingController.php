@@ -146,8 +146,33 @@ class MeetingController extends Controller
     public function chart($meeting_id){
       $meeting=Meeting::findOrFail($meeting_id);
       $hands=$meeting->hands;
+      $details=[];
+      foreach ($hands as $hand) {
+        if(!(array_key_exists($hand->name,$details))) {
+          $details[$hand->name]=["count"=>0, "lowered"=>0,"calledon"=>0];
+        };
+        $details[$hand->name]["count"]++;
+        if (!($hand->raised)) {
+          $details[$hand->name]["lowered"]++;
+          $details[$hand->name]["loweredtime"][]=$hand->created_at->diff($hand->updated_at)->m;
+        };
+        if ($hand->calledon) {
+          $details[$hand->name]["calledon"]++;
+          $details[$hand->name]["calledontime"][]=$hand->created_at->diff($hand->updated_at)->m;
+        }
+      }
+      foreach ($details as $name => $detail) {
+        if (!(array_key_exists("loweredtime",$detail))) {
+          $details[$name]["loweredtime"]=[0];
+        }
+        if (!(array_key_exists("calledontime",$detail))) {
+          $details[$name]["calledontime"]=[0];
+        }
+      }
+      ksort($details);
       return view('chart',
         ['meeting'=>$meeting,
-        'hands'=>$hands]);
+        'hands'=>$hands,
+        'details'=>$details]);
     }
 }

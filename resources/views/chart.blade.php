@@ -48,7 +48,28 @@
 @section('content')
     <h1>{{$meeting->name}}</h1>
     <div>
+      <table class="table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Times raised hand</th>
+            <th>Times lowered hand</th>
+            <th>Times called on</th>
+          </tr>
+        </thead>
+        @foreach($details as $name=>$detail)
+          <tr>
+            <td>{{$name}}
+            <td>{{$detail["count"]}}</td>
+            <td>{{$detail["lowered"]}} ({{array_sum($detail["loweredtime"]) / count($detail["loweredtime"])}})</td>
+            <td>{{$detail["calledon"]}} ({{array_sum($detail["calledontime"]) / count($detail["calledontime"])}})</td>
+          </tr>
+        @endforeach
+      </table>
+    </div>
+    <div>
       held on {{$meeting->created_at->toRfc850String()}}, hosted by {{$meeting->moderator}}.
 
     <div id="timeline" style="height: 100%;"></div>
+
 @endsection
